@@ -1,0 +1,31 @@
+# Normalise all text files to LF in the repository
+* text=auto eol=lf
+
+# Notebooks -- ensure consistent line endings, no diff noise on metadata
+*.ipynb text eol=lf linguist-detectable=false
+
+# Python source
+*.py text eol=lf
+
+# Markdown / YAML / JSON
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.toml text eol=lf
+
+# Binaries — never diff
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pt binary
+*.pth binary
+*.pkl binary
+*.npy binary
+*.npz binary
+*.h5 binary
+*.hdf5 binary
+*.zip binary
+*.tar.gz binary

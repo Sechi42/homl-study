@@ -33,18 +33,13 @@ ENV/
 *.ipynb_checkpoints
 
 # ──────────────────────────────────────────────
-#  Datasets & large files  (keep data/ tracked
-#  only via .gitkeep; add real data here)
+#  Datasets  — CSV/TSV in data/ ARE tracked.
+#  Only exclude very large binary files.
 # ──────────────────────────────────────────────
-data/**
-!data/.gitkeep
-*.csv
-*.tsv
+# Large binary dataset formats — do NOT commit these to git
 *.parquet
 *.h5
 *.hdf5
-*.pkl
-*.pickle
 *.npy
 *.npz
 *.zip
@@ -53,13 +48,17 @@ data/**
 *.gz
 *.7z
 
-# Trained model weights
+# Trained model weights (often 100s of MB)
 *.pt
 *.pth
 *.ckpt
 *.safetensors
 *.bin
 *.onnx
+
+# Pickle / joblib caches
+*.pkl
+*.pickle
 
 # ──────────────────────────────────────────────
 #  IDE / editor

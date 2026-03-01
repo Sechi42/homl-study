@@ -9,6 +9,25 @@ The objective is to read each chapter, reproduce and extend the examples, build 
 
 ---
 
+## Installed Skills — ALWAYS Use These
+
+Three domain skills are installed in `.agents/skills/`. **These take priority** over generic suggestions:
+
+| Skill | Path | Purpose |
+|-------|------|---------|
+| `polars` | `.agents/skills/polars/` | Polars DataFrame API, expressions, lazy evaluation |
+| `scikit-learn` | `.agents/skills/scikit-learn/` | sklearn pipelines, transformers, estimators |
+| `deep-learning-pytorch` | `.agents/skills/deep-learning-pytorch/` | PyTorch best practices, nn.Module, training loops |
+
+### When to apply each skill
+- **Any tabular data wrangling** → prefer **Polars** (`pl.DataFrame`, lazy API, expressions) over pandas unless the user explicitly asks for pandas.
+- **Any ML pipeline, preprocessing, model selection** → follow the **scikit-learn** skill's conventions (Pipeline, ColumnTransformer, cross-validation).
+- **Any neural network, training loop, or deep learning code** → follow the **deep-learning-pytorch** skill's patterns (nn.Module subclasses, device-agnostic code, proper train/eval modes).
+
+---
+
+---
+
 ## Project Layout
 
 ```
@@ -36,17 +55,43 @@ Never hard-code absolute paths.
 - When implementing a concept from the book, include a short docstring or markdown cell that anchors it to the chapter topic.
 
 ### 2. Data Loading Convention
-Always use `pathlib.Path` and `../data/` relative paths:
+All data lives in `data/` at the project root. Always use `pathlib.Path` and the `../data/` relative path:
+
 ```python
 from pathlib import Path
+import polars as pl
+import pandas as pd
+
 DATA_PATH = Path("../data")
-df = pd.read_csv(DATA_PATH / "dataset_name.csv")
+
+# Polars — preferred for wrangling
+df = pl.read_csv(DATA_PATH / "housing.csv")
+
+# Pandas — when scikit-learn needs a DataFrame
+df_pd = pd.read_csv(DATA_PATH / "housing.csv")
+
+# Available datasets in data/
+# housing.csv        — California Housing (Ch. 2)
+# lifesat.csv        — Life Satisfaction OECD subset (Ch. 1)
+# lifesat_full.csv   — Life Satisfaction full dataset (Ch. 1)
+# oecd_bli.csv       — OECD Better Life Index raw (Ch. 1)
+# gdp_per_capita.csv — World Bank GDP per capita (Ch. 1)
 ```
+
+**Never hard-code absolute paths.**
 
 ### 3. Code Style
 - Python 3.10+ syntax (match-case, `|` union types, etc.)
 - Use `f-strings`, not `.format()` or `%`.
-- Prefer `numpy`, `pandas`, `scikit-learn`, `matplotlib`/`seaborn`, and `torch` / `torchvision` / `transformers`.
+- **Polars first:** for any new data loading or wrangling, write it in Polars unless the existing code is already in pandas.
+  ```python
+  # Preferred
+  df = pl.read_csv(DATA_PATH / "housing.csv")
+  result = df.filter(pl.col("ocean_proximity") == "NEAR BAY").group_by("ocean_proximity").agg(pl.col("median_house_value").mean())
+
+  # Pandas still ok for sklearn compatibility shims
+  df_pd = df.to_pandas()
+  ```
 - Each notebook cell should do **one** logical thing.
 
 ### 4. ML / Deep Learning Best Practices

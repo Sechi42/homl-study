@@ -1,0 +1,81 @@
+# ──────────────────────────────────────────────
+#  Python
+# ──────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.installed.cfg
+lib/
+lib64/
+wheels/
+
+# ──────────────────────────────────────────────
+#  Virtual environments
+# ──────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+.conda/
+
+# ──────────────────────────────────────────────
+#  Jupyter / notebooks
+# ──────────────────────────────────────────────
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ──────────────────────────────────────────────
+#  Datasets & large files  (keep data/ tracked
+#  only via .gitkeep; add real data here)
+# ──────────────────────────────────────────────
+data/**
+!data/.gitkeep
+*.csv
+*.tsv
+*.parquet
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.npy
+*.npz
+*.zip
+*.tar.gz
+*.tar.bz2
+*.gz
+*.7z
+
+# Trained model weights
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.bin
+*.onnx
+
+# ──────────────────────────────────────────────
+#  IDE / editor
+# ──────────────────────────────────────────────
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ──────────────────────────────────────────────
+#  Misc
+# ──────────────────────────────────────────────
+.env
+.envrc
+*.log
+*.out
+*.err

@@ -33,10 +33,9 @@ ENV/
 *.ipynb_checkpoints
 
 # ──────────────────────────────────────────────
-#  Datasets  — CSV/TSV in data/ ARE tracked.
-#  Only exclude very large binary files.
+#  Datasets — Ignoramos la carpeta data por completo según lo solicitado.
 # ──────────────────────────────────────────────
-# Large binary dataset formats — do NOT commit these to git
+data/
 *.parquet
 *.h5
 *.hdf5
@@ -77,4 +76,3 @@ Thumbs.db
 .envrc
 *.log
 *.out
-*.err

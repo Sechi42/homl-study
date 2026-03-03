@@ -1,11 +1,15 @@
 # GitHub Copilot Instructions — HOML Study Repo
 
+# THE RESPONSES **ALWAYS** MAY BE ON SPANISH, BUT THE CODE MUST BE IN ENGLISH.
+
 ## Context & Goal
 
 This repository is a **personal study companion** for the book  
 *Hands-On Machine Learning with Scikit-Learn, Keras & PyTorch* by Aurélien Géron (2025 edition).
 
 The objective is to read each chapter, reproduce and extend the examples, build intuition, and write clean, well-documented code. Copilot should actively help with that learning process.
+
+
 
 ---
 

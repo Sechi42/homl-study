@@ -76,24 +76,33 @@ git clone <your-repo-url>
 cd homl-study
 ```
 
-### 2 — Create a virtual environment
+### 2 — Install uv
 ```bash
-python -m venv .venv
-# Windows PowerShell
-.venv\Scripts\Activate.ps1
-# macOS / Linux / Git Bash
-source .venv/bin/activate
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-### 3 — Install dependencies
+### 3 — Create the environment and install the notebook stack
 ```bash
-pip install --upgrade pip
-pip install scikit-learn pandas numpy matplotlib seaborn jupyter torch torchvision torchaudio transformers
+uv sync
 ```
 
-### 4 — Launch Jupyter
+This installs the dependencies required by the current scikit-learn and Polars notebooks, including JupyterLab, Plotnine, and the Chapter 2 stack.
+
+### 4 — Optional: install the deep learning stack for later chapters
 ```bash
-jupyter lab
+uv sync --extra deep-learning
+```
+
+This adds PyTorch, TorchVision, TorchAudio, and Transformers for the later chapters.
+
+### 5 — Register a Jupyter kernel
+```bash
+uv run python -m ipykernel install --user --name homl-study --display-name "Python (homl-study)"
+```
+
+### 6 — Launch JupyterLab
+```bash
+uv run jupyter lab
 ```
 
 ---
